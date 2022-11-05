@@ -1,8 +1,4 @@
 
-#include "Wire.h"
-
-#define meuEnd 0x100
-
 
 #define pinMot1A 5
 #define pinMot1B 6
@@ -12,12 +8,8 @@
 #define velocidade 100
 
 
-
 void setup() {
   // put your setup code here, to run once:
-
-  Wire.begin(meuEnd);
-  Wire.onReceive(receptor);
 
   Serial.begin(9600);
   
@@ -31,31 +23,31 @@ void setup() {
 }
 
 void loop() {
-  }
-
-void receptor(int quantidade ) {
-
-  if(Wire.available()){
-    char recebido = Wire.read();
-
-    if(recebido == "rf" && recebido == "ult"){ 
+ 
+      if(Serial.available()>0){
+        char c = Serial.read();
+        if(c == 'A'){
+        digitalWrite(pinMot1A, HIGH);
+        delay(2000);
+        digitalWrite(pinMot1A, LOW);
       
-      digitalWrite(pinMot1A, HIGH);
-      delay(2000);
-      digitalWrite(pinMot1A, LOW);
-    
-      digitalWrite(pinMot2A, HIGH);
-      delay(2000);
-      digitalWrite(pinMot2A, LOW);
-    
-      digitalWrite(pinMot1B, HIGH);
-      delay(2000);
-      digitalWrite(pinMot1B, LOW);
-    
-      digitalWrite(pinMot2B, HIGH);
-      delay(2000);
-      digitalWrite(pinMot2B, LOW);
-    }
-  }
+        digitalWrite(pinMot2A, HIGH);
+        delay(2000);
+        digitalWrite(pinMot2A, LOW);
+      
+        digitalWrite(pinMot1B, HIGH);
+        delay(2000);
+        digitalWrite(pinMot1B, LOW);
+      
+        digitalWrite(pinMot2B, HIGH);
+        delay(2000);
+        digitalWrite(pinMot2B, LOW);
+        Serial.println("motores on");
+     
+        }
+      }
+     
+   
+ 
 
 }

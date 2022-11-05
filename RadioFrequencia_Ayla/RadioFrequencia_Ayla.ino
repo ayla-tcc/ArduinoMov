@@ -31,13 +31,10 @@ quando utilizar atmega328p, utilizar os seguintess fuses (tanto p/ arduino ide q
   FONES:54 3324 2251 54 9206 7168    
   E-MAIL: ibisul@ibisul.com.br    
   Permitido o uso público, mas deve-se manter o nome do autor.    
-  ** Modificado por Criando Robo Com Arduino ***    
+  **** Modificado por Criando Robo Com Arduino *****    
   */    
 
-  #include "Wire.h"
 
-  #define EndMotor 0x100
-  int rf = 1;
   
   int x,startbit,ctr,dataok,t1,larpulso,larpulso1,larpulso2,larpulso3,larpulso4,bt1,bt2,antcode=0;    
   unsigned long _data=0; // DATA é o Código recebido do HT6p20 todos os 28 BITS onde, 22 do coodigo+2 dos botões+4 do anti-codigo;    
@@ -51,7 +48,7 @@ quando utilizar atmega328p, utilizar os seguintess fuses (tanto p/ arduino ide q
   void setup(){    
   _pin=4;   
 
-  Wire.begin();
+ 
    
   Serial.begin(9600);    
   pinMode(4, INPUT);// pino 4 DATA do receptor Rx 433mhz    
@@ -131,15 +128,13 @@ quando utilizar atmega328p, utilizar os seguintess fuses (tanto p/ arduino ide q
     Serial.println('A');
     delay(1000);
     digitalWrite(13, LOW);  */
+      Serial.println('A');
       digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
       delay(1000);                       // wait for a second
       digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
-      delay(1000);  // wait for a second
-      Serial.println("batata");
+      delay(1000);                       // wait for a second
 
-      Wire.beginTransmission(EndMotor);
-      Wire.write(rf);
-      Wire.endTransmission();
+     
     }
     liga_desliga++;    
     }    
@@ -165,4 +160,4 @@ quando utilizar atmega328p, utilizar os seguintess fuses (tanto p/ arduino ide q
    .:: Mostrando os testes dos robôs e projetos  
      Test Criando Robô Com Arduino  
      https://www.youtube.com/TestCriandoRoboComAr  
-   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+   :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/  
